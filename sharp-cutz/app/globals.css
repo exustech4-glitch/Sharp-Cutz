@@ -1,0 +1,90 @@
+:root {
+  color-scheme: dark;
+  --obsidian: #121214;
+  --carbon: #1a1b1f;
+  --carbon-raised: #212228;
+  --carbon-modal: #1d1e23;
+  --hairline: #2c2e35;
+  --brass: #d4af37;
+  --gold-hover: #e5c158;
+  --steel: #e6e6eb;
+  --slate: #8a8d98;
+  --leather: #8c6239;
+  --copper: #c2593f;
+  --pole-red: #c8372d;
+  --font-head: var(--font-space), system-ui, sans-serif;
+  --font-body: var(--font-hanken), system-ui, sans-serif;
+  --radius-btn: 4px;
+  --radius-card: 8px;
+  --container: 1100px;
+}
+
+html {
+  min-height: 100%;
+  background: var(--obsidian);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--obsidian);
+  color: var(--steel);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--steel);
+  font-family: var(--font-head);
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+  h1 {
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
