@@ -86,4 +86,9 @@ a {
     animation: none !important;
     transition: none !important;
   }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
