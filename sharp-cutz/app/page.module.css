@@ -340,24 +340,6 @@
   width: 100%;
 }
 
-.chatButton {
-  position: fixed;
-  z-index: 6;
-  right: 14px;
-  bottom: 16px;
-  display: grid;
-  width: 58px;
-  height: 58px;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: var(--brass);
-  color: var(--obsidian);
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-}
-
 @media (min-width: 600px) {
   .hero {
     min-height: 520px;
@@ -511,10 +493,6 @@
     display: none;
   }
 
-  .chatButton {
-    right: max(24px, calc((100vw - var(--container)) / 2));
-    bottom: 24px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

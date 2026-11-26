@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, Space_Grotesk } from "next/font/google";
+import BotpressChat from "./components/BotpressChat";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -29,7 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${hankenGrotesk.variable}`}>
-      <body>{children}</body>
+      <head>
+        <link rel="preconnect" href="https://vdk-viber-runtime-prod.bot.botpress.host" />
+        <link rel="stylesheet" href="https://vdk-viber-runtime-prod.bot.botpress.host/edge/webchat.css" />
+      </head>
+      <body>
+        {children}
+        <BotpressChat />
+      </body>
     </html>
   );
 }

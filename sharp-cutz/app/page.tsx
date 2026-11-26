@@ -203,9 +203,6 @@ export default function Home() {
         <div className={styles.mobileBook}>
           <BookButton label="Book a cut" />
         </div>
-        <button className={styles.chatButton} type="button" aria-label="Chat with Sharp Cutz Assistant">
-          Chat
-        </button>
       </main>
     </BookingProvider>
   );
