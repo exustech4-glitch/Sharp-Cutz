@@ -38,5 +38,11 @@ async function mountBotpressChat() {
 }
 
 export default function BotpressChat() {
-  return <Script src={`${baseUrl}/edge/webchat.js`} strategy="afterInteractive" onReady={mountBotpressChat} />;
+  return (
+    <Script
+      src={`${baseUrl}/edge/webchat.js`}
+      strategy="afterInteractive"
+      onReady={() => { void mountBotpressChat(); }}
+    />
+  );
 }
