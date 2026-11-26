@@ -42,6 +42,12 @@
 .heroPhoto {
   object-fit: cover;
   object-position: center;
+  animation: heroPhotoDrift 24s ease-in-out infinite alternate;
+}
+
+@keyframes heroPhotoDrift {
+  from { transform: scale(1); }
+  to { transform: scale(1.055); }
 }
 
 .heroShade {
@@ -516,5 +522,12 @@
   .cutCard,
   .nav a {
     transition: none;
+  }
+
+  .bookButton:hover,
+  .bookButton:active,
+  .cutCard:hover,
+  .cutCard:hover .cardPhoto {
+    transform: none;
   }
 }

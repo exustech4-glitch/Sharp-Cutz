@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent, MouseEvent, SyntheticEvent } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import styles from "./BookingModal.module.css";
 
 const services = ["Shop cut", "Kids' cut", "Home service"] as const;
@@ -11,6 +12,9 @@ type BookingResponse = { ok?: boolean; field?: string };
 
 export default function BookingModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const closingRef = useRef(false);
+  const reducedMotion = useReducedMotion();
+  const [isClosing, setIsClosing] = useState(false);
   const [service, setService] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -21,12 +25,28 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
     if (!dialog) return;
 
     if (open && !dialog.open) {
+      closingRef.current = false;
+      setIsClosing(false);
       dialog.showModal();
       dialog.querySelector<HTMLInputElement>("input[name='name']")?.focus();
     } else if (!open && dialog.open) {
       dialog.close();
     }
   }, [open]);
+
+  function requestClose() {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    if (reducedMotion) {
+      onClose();
+      return;
+    }
+    setIsClosing(true);
+  }
+
+  function finishClose() {
+    if (closingRef.current && isClosing) onClose();
+  }
 
   useEffect(() => {
     if (!open && isSent) {
@@ -38,7 +58,7 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
 
   function handleCancel(event: SyntheticEvent<HTMLDialogElement>) {
     event.preventDefault();
-    onClose();
+    requestClose();
   }
 
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
@@ -47,7 +67,7 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
     const outsidePanel =
       event.clientX < rect.left || event.clientX > rect.right ||
       event.clientY < rect.top || event.clientY > rect.bottom;
-    if (outsidePanel) onClose();
+    if (outsidePanel) requestClose();
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -97,12 +117,16 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
   }
 
   return (
-    <dialog
+    <motion.dialog
       ref={dialogRef}
       className={styles.dialog}
       aria-labelledby="booking-title"
       onCancel={handleCancel}
       onClick={handleBackdropClick}
+      initial={false}
+      animate={isClosing ? { opacity: 0, y: 12, scale: 0.98 } : { opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
+      onAnimationComplete={finishClose}
     >
       {isSent ? (
         <section className={styles.success} aria-live="polite">
@@ -111,7 +135,7 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
             <h2 id="booking-title">Request sent</h2>
             <p>Thanks. The shop will contact you to confirm a time.</p>
           </div>
-          <button className={styles.closeSuccess} type="button" onClick={onClose}>
+          <button className={styles.closeSuccess} type="button" onClick={requestClose}>
             Close
           </button>
         </section>
@@ -122,7 +146,7 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
               <h2 id="booking-title">Book a cut</h2>
               <p>Send a request. The shop will contact you to confirm a time.</p>
             </div>
-            <button className={styles.closeButton} type="button" aria-label="Close booking form" onClick={onClose}>
+            <button className={styles.closeButton} type="button" aria-label="Close booking form" onClick={requestClose}>
               ×
             </button>
           </header>
@@ -194,6 +218,6 @@ export default function BookingModal({ open, onClose }: { open: boolean; onClose
           </form>
         </>
       )}
-    </dialog>
+    </motion.dialog>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { shop } from "@/lib/config";
 import BookingProvider from "./components/booking/BookingProvider";
 import BookButton from "./components/booking/BookButton";
+import Reveal from "./components/Reveal";
 import styles from "./page.module.css";
 
 const cuts = [
@@ -63,10 +64,10 @@ function Hero() {
       </div>
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.heroContent}>
-        <span className={styles.tag}>BARBERSHOP · BENIN CITY</span>
-        <h1 id="hero-title">{shop.name}</h1>
-        <p>{shop.tagline}</p>
-        <BookButton label="Book a cut" />
+        <Reveal mode="load" fadeOnly><span className={styles.tag}>BARBERSHOP · BENIN CITY</span></Reveal>
+        <Reveal mode="load" delay={0.08} fadeOnly><h1 id="hero-title">{shop.name}</h1></Reveal>
+        <Reveal mode="load" delay={0.16} fadeOnly><p>{shop.tagline}</p></Reveal>
+        <Reveal mode="load" delay={0.24} fadeOnly><BookButton label="Book a cut" /></Reveal>
       </div>
     </section>
   );
@@ -80,8 +81,9 @@ function CutsGrid() {
         <span className={styles.tag}>3 CUTS</span>
       </div>
       <div className={styles.cutsGrid}>
-        {cuts.map((cut) => (
-          <article className={styles.cutCard} key={cut.title}>
+        {cuts.map((cut, index) => (
+          <Reveal key={cut.title} delay={index * 0.06}>
+          <article className={styles.cutCard}>
             <div className={`${styles.imageSurface} ${styles.cardImage}`}>
               <Image
                 src={cut.src}
@@ -96,6 +98,7 @@ function CutsGrid() {
               <p>{cut.text}</p>
             </div>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -104,6 +107,7 @@ function CutsGrid() {
 
 function BestTimes() {
   return (
+    <Reveal>
     <section className={`${styles.section} ${styles.bestTimes}`} id="times" aria-labelledby="times-title">
       <div className={styles.sectionHeading}>
         <h2 id="times-title">Best times to come</h2>
@@ -118,11 +122,13 @@ function BestTimes() {
         ))}
       </ul>
     </section>
+    </Reveal>
   );
 }
 
 function HomeService() {
   return (
+    <Reveal fadeOnly>
     <section className={`${styles.section} ${styles.splitSection}`} id="home" aria-labelledby="home-title">
       <div className={styles.splitCopy}>
         <span className={styles.tag}>A HOME SERVICE WHEN YOU NEED IT</span>
@@ -140,11 +146,13 @@ function HomeService() {
         />
       </div>
     </section>
+    </Reveal>
   );
 }
 
 function VisitInfo() {
   return (
+    <Reveal>
     <section className={`${styles.section} ${styles.splitSection} ${styles.visitSection}`} id="visit" aria-labelledby="visit-title">
       <div className={styles.splitCopy}>
         <span className={styles.tag}>FIND US</span>
@@ -157,22 +165,25 @@ function VisitInfo() {
         <span>{shop.address}</span>
       </div>
     </section>
+    </Reveal>
   );
 }
 
 function BookCta() {
   return (
+    <Reveal fadeOnly>
     <section className={styles.bookCta} id="book" aria-labelledby="book-title">
       <span className={styles.tag}>BOOK A CUT</span>
       <h2 id="book-title">Ready for a fresh cut?</h2>
       <p>Tell us when you'd like to come.</p>
       <BookButton label="Book now" />
     </section>
+    </Reveal>
   );
 }
 
 function Footer() {
-  return <footer className={styles.footer}>{shop.name} · {shop.owner} · {shop.address}</footer>;
+  return <Reveal fadeOnly><footer className={styles.footer}>{shop.name} · {shop.owner} · {shop.address}</footer></Reveal>;
 }
 
 export default function Home() {
