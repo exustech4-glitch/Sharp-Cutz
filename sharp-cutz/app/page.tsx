@@ -1,24 +1,27 @@
+import Image from "next/image";
 import { shop } from "@/lib/config";
+import BookingProvider from "./components/booking/BookingProvider";
+import BookButton from "./components/booking/BookButton";
 import styles from "./page.module.css";
 
 const cuts = [
   {
     title: "Shop cuts",
     text: "Fades, low cuts and clean line-ups, done by our barbers.",
-    image: "Clippers shaping a clean hairline",
-    imageClass: styles.shopImage,
+    src: "/images/shop-cuts.jpg",
+    alt: "Clippers shaping a clean hairline",
   },
   {
     title: "Kids' cuts",
     text: "Gentle, quick cuts for boys. Weekday afternoons are fastest.",
-    image: "A smiling boy in a barber cape",
-    imageClass: styles.kidsImage,
+    src: "/images/kids-cuts.jpg",
+    alt: "A smiling Nigerian boy in a barber cape during a haircut",
   },
   {
     title: "Home service",
     text: "We come to you. Ask us, and the shop confirms your time.",
-    image: "A barber cutting hair in a home compound",
-    imageClass: styles.homeImage,
+    src: "/images/home-service.jpg",
+    alt: "A barber cutting a client's hair in a home compound",
   },
 ];
 
@@ -27,14 +30,6 @@ const bestTimes = [
   "Friday and Saturday are the busiest.",
   "Saturday has the longest wait, so come early or pick a weekday.",
 ];
-
-function BookLink({ label }: { label: string }) {
-  return (
-    <a className={styles.bookButton} href="#book">
-      {label}
-    </a>
-  );
-}
 
 function TopBar() {
   return (
@@ -48,7 +43,7 @@ function TopBar() {
         <a href="#home">Home service</a>
         <a href="#visit">Find us</a>
       </nav>
-      <BookLink label="Book a cut" />
+      <BookButton label="Book a cut" />
     </header>
   );
 }
@@ -56,15 +51,23 @@ function TopBar() {
 function Hero() {
   return (
     <section className={styles.hero} id="top" aria-labelledby="hero-title">
-      <div className={`${styles.imageSurface} ${styles.heroImage}`} role="img" aria-label="Barber giving a fade in a busy Benin City barbershop" />
+      <div className={`${styles.imageSurface} ${styles.heroImage}`}>
+        <Image
+          src="/images/hero.jpg"
+          alt="A Nigerian barber giving a fade to a client in a busy barbershop"
+          fill
+          preload
+          sizes="100vw"
+          className={styles.heroPhoto}
+        />
+      </div>
       <div className={styles.heroShade} aria-hidden="true" />
       <div className={styles.heroContent}>
         <span className={styles.tag}>BARBERSHOP · BENIN CITY</span>
         <h1 id="hero-title">{shop.name}</h1>
         <p>{shop.tagline}</p>
-        <BookLink label="Book a cut" />
+        <BookButton label="Book a cut" />
       </div>
-      <div className={styles.poleStripe} aria-hidden="true" />
     </section>
   );
 }
@@ -79,7 +82,15 @@ function CutsGrid() {
       <div className={styles.cutsGrid}>
         {cuts.map((cut) => (
           <article className={styles.cutCard} key={cut.title}>
-            <div className={`${styles.imageSurface} ${styles.cardImage} ${cut.imageClass}`} role="img" aria-label={cut.image} />
+            <div className={`${styles.imageSurface} ${styles.cardImage}`}>
+              <Image
+                src={cut.src}
+                alt={cut.alt}
+                fill
+                sizes="(min-width: 900px) 33vw, (min-width: 600px) 50vw, 100vw"
+                className={styles.cardPhoto}
+              />
+            </div>
             <div className={styles.cardCopy}>
               <h3>{cut.title}</h3>
               <p>{cut.text}</p>
@@ -117,9 +128,17 @@ function HomeService() {
         <span className={styles.tag}>A HOME SERVICE WHEN YOU NEED IT</span>
         <h2 id="home-title">Home service</h2>
         <p>Send us your request and your area. The shop will contact you to confirm a time.</p>
-        <BookLink label="Book now" />
+        <BookButton label="Book now" />
       </div>
-      <div className={`${styles.imageSurface} ${styles.wideImage} ${styles.homeImage}`} role="img" aria-label="A barber with a kit bag cutting hair in a home compound" />
+      <div className={`${styles.imageSurface} ${styles.wideImage} ${styles.homeImage}`}>
+        <Image
+          src="/images/home-service.jpg"
+          alt="A Nigerian barber arriving with a kit bag and cutting a client's hair at home"
+          fill
+          sizes="(min-width: 900px) 50vw, 100vw"
+          className={styles.widePhoto}
+        />
+      </div>
     </section>
   );
 }
@@ -147,7 +166,7 @@ function BookCta() {
       <span className={styles.tag}>BOOK A CUT</span>
       <h2 id="book-title">Ready for a fresh cut?</h2>
       <p>Tell us when you'd like to come.</p>
-      <BookLink label="Book now" />
+      <BookButton label="Book now" />
     </section>
   );
 }
@@ -158,23 +177,25 @@ function Footer() {
 
 export default function Home() {
   return (
-    <main className={styles.page}>
-      <TopBar />
-      <Hero />
-      <div className={styles.content}>
-        <CutsGrid />
-        <BestTimes />
-        <HomeService />
-        <VisitInfo />
-        <BookCta />
-        <Footer />
-      </div>
-      <div className={styles.mobileBook}>
-        <BookLink label="Book a cut" />
-      </div>
-      <button className={styles.chatButton} type="button" aria-label="Chat with Sharp Cutz Assistant">
-        Chat
-      </button>
-    </main>
+    <BookingProvider>
+      <main className={styles.page}>
+        <TopBar />
+        <Hero />
+        <div className={styles.content}>
+          <CutsGrid />
+          <BestTimes />
+          <HomeService />
+          <VisitInfo />
+          <BookCta />
+          <Footer />
+        </div>
+        <div className={styles.mobileBook}>
+          <BookButton label="Book a cut" />
+        </div>
+        <button className={styles.chatButton} type="button" aria-label="Chat with Sharp Cutz Assistant">
+          Chat
+        </button>
+      </main>
+    </BookingProvider>
   );
 }

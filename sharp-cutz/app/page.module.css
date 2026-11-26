@@ -39,6 +39,11 @@
   background-image: radial-gradient(ellipse at 72% 34%, rgba(212, 175, 55, 0.17), transparent 34%), linear-gradient(90deg, rgba(18, 18, 20, 0.55), rgba(18, 18, 20, 0.32)), linear-gradient(135deg, #333238, #18191d 55%, #101012);
 }
 
+.heroPhoto {
+  object-fit: cover;
+  object-position: center;
+}
+
 .heroShade {
   position: absolute;
   z-index: -1;
@@ -93,6 +98,7 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1;
+  cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
@@ -106,15 +112,6 @@
 
 .bookButton:active {
   transform: scale(0.97);
-}
-
-.poleStripe {
-  position: absolute;
-  right: 0;
-  bottom: -5px;
-  left: 0;
-  height: 10px;
-  background: repeating-linear-gradient(132deg, var(--steel) 0 10px, var(--pole-red) 10px 20px, var(--obsidian) 20px 30px);
 }
 
 .section {
@@ -157,16 +154,17 @@
   border-bottom: 1px solid var(--hairline);
 }
 
-.shopImage {
-  background-image: radial-gradient(ellipse at 50% 85%, rgba(140, 98, 57, 0.2), transparent 35%), linear-gradient(140deg, #28292e, #151619 65%);
-}
-
-.kidsImage {
-  background-image: radial-gradient(ellipse at 58% 42%, rgba(212, 175, 55, 0.13), transparent 34%), linear-gradient(140deg, #28272a, #17181c 65%);
-}
-
 .homeImage {
   background-image: radial-gradient(ellipse at 75% 65%, rgba(140, 98, 57, 0.19), transparent 35%), linear-gradient(140deg, #28282a, #151619 65%);
+}
+
+.cardPhoto,
+.widePhoto {
+  object-fit: cover;
+}
+
+.cardPhoto {
+  transition: transform 200ms ease;
 }
 
 .cardCopy {
@@ -361,6 +359,10 @@
     padding-left: 24px;
   }
 
+  .heroPhoto {
+    object-position: 78% center;
+  }
+
   .cutsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
@@ -437,6 +439,10 @@
     padding: 80px 24px 72px;
   }
 
+  .heroPhoto {
+    object-position: center;
+  }
+
   .heroContent {
     width: min(calc(100% - 48px), var(--container));
   }
@@ -469,6 +475,10 @@
     transform: translateY(-4px);
     border-color: rgba(212, 175, 55, 0.4);
     box-shadow: 0 12px 32px -4px rgba(212, 175, 55, 0.08);
+  }
+
+  .cutCard:hover .cardPhoto {
+    transform: scale(1.05);
   }
 
   .cardImage {
