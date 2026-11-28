@@ -59,7 +59,7 @@ function Hero() {
     <section className={styles.hero} id="top" aria-labelledby="hero-title">
       <div className={`${styles.imageSurface} ${styles.heroImage}`}>
         <Image
-          src="/images/hero-20261128.jpg"
+          src="/images/hero-barbershop-20261128.jpg"
           alt="A Nigerian barber giving a fade to a client in a busy barbershop"
           fill
           preload
