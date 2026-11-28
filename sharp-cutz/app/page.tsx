@@ -23,7 +23,7 @@ const cuts = [
   {
     title: "Home service",
     text: "We come to you. Ask us, and the shop confirms your time.",
-    src: "/images/home-service.jpg",
+    src: "/images/home-service-20261128.jpg",
     alt: "A barber cutting a client's hair in a home compound",
   },
 ];
@@ -143,7 +143,7 @@ function HomeService() {
       </div>
       <div className={`${styles.imageSurface} ${styles.wideImage} ${styles.homeImage}`}>
         <Image
-          src="/images/home-service.jpg"
+          src="/images/home-service-20261128.jpg"
           alt="A Nigerian barber arriving with a kit bag and cutting a client's hair at home"
           fill
           sizes="(min-width: 900px) 50vw, 100vw"
