@@ -1,0 +1,110 @@
+.header {
+  position: sticky;
+  z-index: 8;
+  top: 0;
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--hairline);
+  background: rgba(18, 18, 20, 0.96);
+  backdrop-filter: blur(14px);
+}
+
+.wordmark {
+  color: var(--brass);
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.toggle {
+  display: inline-flex;
+  min-width: 76px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--carbon);
+  color: var(--steel);
+  font: 600 11px var(--font-head);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toggle:focus-visible,
+.menu a:focus-visible,
+.wordmark:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.icon {
+  display: grid;
+  width: 16px;
+  gap: 4px;
+}
+
+.icon span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brass);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.iconOpen span:first-child { transform: translateY(6px) rotate(45deg); }
+.iconOpen span:nth-child(2) { opacity: 0; }
+.iconOpen span:last-child { transform: translateY(-6px) rotate(-45deg); }
+
+.menu {
+  position: absolute;
+  top: calc(100% + 1px);
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 2px;
+  padding: 10px 16px 16px;
+  border-bottom: 1px solid var(--hairline);
+  background: rgba(29, 30, 35, 0.98);
+  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.32);
+  animation: menuEnter 160ms ease-out both;
+}
+
+.menu > a {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--steel);
+  font: 600 12px var(--font-head);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu > a:active { color: var(--brass); }
+.menuBook { padding-top: 12px; }
+.menuBook > :global(button) { width: 100%; }
+
+@keyframes menuEnter {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 900px) {
+  .header { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon span { transition: none; }
+  .menu { animation: none; }
+}

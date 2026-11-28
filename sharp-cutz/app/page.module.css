@@ -126,6 +126,96 @@
   scroll-margin-top: 88px;
 }
 
+@media (max-width: 599px) {
+  .content {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .hero {
+    min-height: 280px;
+    padding: 28px 16px 26px;
+  }
+
+  .heroPhoto {
+    object-position: 70% center;
+  }
+
+  .heroContent h1 {
+    margin-top: 16px;
+    font-size: clamp(30px, 9vw, 38px);
+    line-height: 1.1;
+  }
+
+  .heroContent p {
+    max-width: 34ch;
+    margin: 12px 0 20px;
+    font-size: 15px;
+    line-height: 23px;
+  }
+
+  .section {
+    padding: 36px 0;
+    scroll-margin-top: 72px;
+  }
+
+  .sectionHeading h2,
+  .splitCopy h2,
+  .bookCta h2 {
+    font-size: 23px;
+    line-height: 1.25;
+  }
+
+  .sectionHeading {
+    margin-bottom: 16px;
+  }
+
+  .cutsGrid {
+    gap: 12px;
+  }
+
+  .cardImage {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .cardCopy {
+    padding: 14px;
+  }
+
+  .cardCopy h3 {
+    font-size: 18px;
+  }
+
+  .cardCopy p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .bestTimes ul {
+    gap: 8px;
+  }
+
+  .splitSection {
+    gap: 18px;
+  }
+
+  .wideImage {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .bookCta {
+    padding: 40px 0;
+    scroll-margin-top: 72px;
+  }
+
+  .footer {
+    padding-bottom: 28px;
+    font-size: 12px;
+    line-height: 19px;
+  }
+}
+
 .sectionHeading {
   display: flex;
   align-items: center;

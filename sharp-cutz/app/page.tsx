@@ -3,6 +3,7 @@ import { shop } from "@/lib/config";
 import BookingProvider from "./components/booking/BookingProvider";
 import BookButton from "./components/booking/BookButton";
 import Reveal from "./components/Reveal";
+import MobileNav from "./components/MobileNav";
 import styles from "./page.module.css";
 
 const cuts = [
@@ -190,6 +191,7 @@ export default function Home() {
   return (
     <BookingProvider>
       <main className={styles.page}>
+        <MobileNav />
         <TopBar />
         <Hero />
         <div className={styles.content}>
