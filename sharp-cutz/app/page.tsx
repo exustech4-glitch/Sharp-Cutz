@@ -155,6 +155,8 @@ function HomeService() {
   );
 }
 
+const mapQuery = "Sapele Road, Benin City, Edo State, Nigeria";
+
 function VisitInfo() {
   return (
     <Reveal>
@@ -165,9 +167,26 @@ function VisitInfo() {
         <p>{shop.name}, {shop.address}</p>
         <p className={styles.hours}>Hours: {shop.hours}</p>
       </div>
-      <div className={styles.addressPanel} aria-label="Sharp Cutz location">
-        <span className={styles.locationMark} aria-hidden="true">●</span>
-        <span>{shop.address}</span>
+      <div className={styles.mapCard}>
+        <iframe
+          className={styles.mapFrame}
+          title="Map showing Sharp Cutz on Sapele Road, Benin City"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+        <div className={styles.mapBar}>
+          <span><span className={styles.locationMark} aria-hidden="true">●</span> {shop.address}</span>
+          <a
+            className={styles.directionsLink}
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get directions →
+          </a>
+        </div>
       </div>
     </section>
     </Reveal>
