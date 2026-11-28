@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import BookButton from "./booking/BookButton";
+import ThemeToggle from "./ThemeToggle";
 import styles from "./MobileNav.module.css";
 
 const links = [
@@ -19,21 +20,24 @@ export default function MobileNav() {
       <a className={styles.wordmark} href="#top" onClick={() => setOpen(false)} aria-label="Sharp Cutz home">
         SHARP CUTZ
       </a>
-      <button
-        className={styles.toggle}
-        type="button"
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className={`${styles.icon} ${open ? styles.iconOpen : ""}`} aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
-        <span>{open ? "Close" : "Menu"}</span>
-      </button>
+      <div className={styles.actions}>
+        <ThemeToggle />
+        <button
+          className={styles.toggle}
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className={`${styles.icon} ${open ? styles.iconOpen : ""}`} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span>{open ? "Close" : "Menu"}</span>
+        </button>
+      </div>
       {open && (
         <nav className={styles.menu} id="mobile-navigation" aria-label="Mobile navigation">
           {links.map(([label, href]) => (

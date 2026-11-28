@@ -1,0 +1,43 @@
+.toggle {
+  display: inline-flex;
+  min-width: 76px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  background: var(--carbon);
+  color: var(--steel);
+  font: 600 11px var(--font-head);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.toggle:hover {
+  border-color: var(--brass);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+.icon {
+  color: var(--brass);
+  font-size: 18px;
+  line-height: 1;
+}
+
+@media (max-width: 899px) {
+  .toggle {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle { transition: none; }
+}

@@ -4,6 +4,7 @@ import BookingProvider from "./components/booking/BookingProvider";
 import BookButton from "./components/booking/BookButton";
 import Reveal from "./components/Reveal";
 import MobileNav from "./components/MobileNav";
+import ThemeToggle from "./components/ThemeToggle";
 import styles from "./page.module.css";
 
 const cuts = [
@@ -45,7 +46,10 @@ function TopBar() {
         <a href="#home">Home service</a>
         <a href="#visit">Find us</a>
       </nav>
-      <BookButton label="Book a cut" />
+      <div className={styles.topActions}>
+        <ThemeToggle />
+        <BookButton label="Book a cut" />
+      </div>
     </header>
   );
 }
