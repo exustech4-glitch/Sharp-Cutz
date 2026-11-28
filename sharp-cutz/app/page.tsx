@@ -181,8 +181,6 @@ function VisitInfo() {
           <a
             className={styles.directionsLink}
             href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapQuery)}`}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             Get directions →
           </a>
